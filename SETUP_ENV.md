@@ -30,7 +30,13 @@ JWT_SECRET=election-engagement-platform-secret-key-2024-change-in-production
 JWT_EXPIRES_IN=7d
 
 # CORS
+# You can pass a single origin...
 CORS_ORIGIN=http://localhost:5173
+# ...or use comma-separated values via CORS_ORIGINS
+# Wildcards such as https://*.vercel.app are supported
+CORS_ORIGINS=http://localhost:5173,https://election-engagement.vercel.app
+# Set to true/1/yes only if you want to allow every origin (useful for quick smoke tests)
+CORS_ALLOW_ALL=false
 ```
 
 3. **Restart backend server:**
