@@ -58,7 +58,7 @@ JWT_SECRET=your-secret-key-change-in-production
 JWT_EXPIRES_IN=7d
 
 # CORS
-CORS_ORIGIN=http://localhost:5173
+CORS_ORIGIN=https://election-engagement.vercel.app/
 ```
 
 **Note:** Get your Service Role Key from Supabase Dashboard → Settings → API
