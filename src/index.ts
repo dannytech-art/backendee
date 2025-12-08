@@ -20,11 +20,24 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middleware
+const allowedOrigins = [
+  "https://election-engagement.vercel.app",
+  "http://localhost:5173",
+];
+
 app.use(cors({
-  origin: "*",
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS blocked"));
+    }
+  },
+  credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
 // Increase body size limit for large content (news articles, comments, etc.)
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
