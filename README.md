@@ -141,7 +141,12 @@ JWT_EXPIRES_IN=7d
 
 # CORS
 CORS_ORIGIN=http://localhost:5173
+# or provide multiple origins (comma separated)
+# CORS_ORIGINS=https://app.example.com,https://*.vercel.app
 ```
+
+> `CORS_ORIGIN`/`CORS_ORIGINS` accepts comma-separated values or `*` (allow all).  
+> Wildcards like `https://*.vercel.app` are supported for hosted preview URLs.
 
 ## 🛠️ Development
 

@@ -20,5 +20,5 @@ services:
       # - SUPABASE_URL
       # - SUPABASE_ANON_KEY
       # - JWT_SECRET
-      # - CORS_ORIGIN
+      # - CORS_ORIGIN / CORS_ORIGINS
 
