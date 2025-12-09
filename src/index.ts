@@ -19,49 +19,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-const defaultAllowedOrigins = [
-  'https://election-engagement.vercel.app',
-  'http://localhost:5173',
-];
-
-const envAllowedOrigins = (process.env.CORS_ORIGIN || process.env.CORS_ORIGINS || '')
-  .split(',')
-  .map((origin) => origin.trim())
-  .filter(Boolean);
-
-const allowedOriginPatterns = envAllowedOrigins.length ? envAllowedOrigins : defaultAllowedOrigins;
-const allowAllOrigins = allowedOriginPatterns.includes('*');
-
-const escapeForRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const patternToRegex = (pattern: string) => new RegExp(`^${escapeForRegex(pattern).replace(/\\\*/g, '.*')}$`);
-
-const originMatchers = allowedOriginPatterns
-  .filter((pattern) => pattern !== '*')
-  .map((pattern) => ({
-    pattern,
-    regex: pattern.includes('*') ? patternToRegex(pattern) : null,
-  }));
-
-const isOriginAllowed = (origin: string) => originMatchers.some(({ pattern, regex }) => {
-  if (regex) {
-    return regex.test(origin);
-  }
-  return pattern === origin;
-});
-
-if (process.env.NODE_ENV !== 'production') {
-  console.log('[CORS] Allowed origins:', allowAllOrigins ? ['*'] : allowedOriginPatterns);
-}
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowAllOrigins || isOriginAllowed(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS blocked for origin: ${origin}`));
-    }
-  },
-  credentials: true,
+  origin: '*',
+  credentials: false,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
