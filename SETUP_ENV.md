@@ -30,7 +30,7 @@ JWT_SECRET=election-engagement-platform-secret-key-2024-change-in-production
 JWT_EXPIRES_IN=7d
 
 # CORS
-CORS_ORIGIN=https://election-engagement.vercel.app/
+CORS_ORIGIN=http://localhost:5173
 ```
 
 3. **Restart backend server:**
@@ -53,6 +53,8 @@ NODE_ENV=development
 JWT_SECRET=election-engagement-platform-secret-key-2024-change-in-production
 JWT_EXPIRES_IN=7d
 CORS_ORIGIN=http://localhost:5173
+# Example for production:
+# CORS_ORIGINS=https://election-engagement.vercel.app,https://admin.election-engagement.com
 EOF
 ```
 

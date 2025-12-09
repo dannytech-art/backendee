@@ -51,12 +51,14 @@ PORT=10000
 
 # CORS Configuration
 CORS_ORIGIN=https://your-frontend-domain.com
+# or comma-separated list / wildcard
+# CORS_ORIGINS=https://app.example.com,https://*.vercel.app
 ```
 
 **Important Notes:**
 - Replace `your-supabase-anon-key-here` with your actual Supabase anon key
 - Generate a strong `JWT_SECRET` (use: `openssl rand -base64 32`)
-- Set `CORS_ORIGIN` to your frontend URL (e.g., `https://your-app.vercel.app`)
+- Set `CORS_ORIGIN` (single) or `CORS_ORIGINS` (comma-separated) to your frontend URL(s). Wildcards like `https://*.vercel.app` are supported, or use `*` to reflect any origin.
 
 ### Step 5: Deploy
 
@@ -72,7 +74,7 @@ CORS_ORIGIN=https://your-frontend-domain.com
 - [ ] Supabase database is set up and migrations are run
 - [ ] Environment variables are configured
 - [ ] `JWT_SECRET` is generated and set
-- [ ] `CORS_ORIGIN` is set to your frontend URL
+- [ ] `CORS_ORIGIN`/`CORS_ORIGINS` matches your allowed frontend URL(s)
 - [ ] Backend code is pushed to GitHub
 - [ ] Root directory is set to `backend` in Render settings
 
@@ -169,7 +171,7 @@ To disable auto-deploy:
 
 ### Issue: CORS Errors
 **Solution:**
-- Update `CORS_ORIGIN` environment variable
+- Update `CORS_ORIGIN` or `CORS_ORIGINS` environment variable (supports comma-separated entries, wildcards, or `*` for allow-all)
 - Ensure frontend URL is correct (include `https://`)
 - Check backend logs for CORS errors
 
@@ -202,7 +204,7 @@ Render automatically checks: `https://your-service.onrender.com/health`
 
 1. **Never commit `.env` files** ✅ (already in .gitignore)
 2. **Use strong JWT_SECRET** - Generate with: `openssl rand -base64 32`
-3. **Set CORS_ORIGIN** - Only allow your frontend domain
+3. **Set CORS_ORIGIN/CORS_ORIGINS** - Restrict API access to your frontend domain(s)
 4. **Use HTTPS** - Render provides this automatically
 5. **Keep dependencies updated** - Run `pnpm update` regularly
 

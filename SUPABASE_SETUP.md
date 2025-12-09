@@ -58,10 +58,11 @@ JWT_SECRET=your-secret-key-change-in-production
 JWT_EXPIRES_IN=7d
 
 # CORS
-CORS_ORIGIN=https://election-engagement.vercel.app/
+CORS_ORIGIN=http://localhost:5173
 ```
 
-**Note:** Get your Service Role Key from Supabase Dashboard → Settings → API
+**Note:** Get your Service Role Key from Supabase Dashboard → Settings → API.  
+Set `CORS_ORIGIN` or `CORS_ORIGINS` to the frontend domains you want to allow (comma-separated lists and `*` wildcards are supported).
 
 ### Step 3: Verify Tables
 
